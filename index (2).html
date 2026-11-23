@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechFix Pro | Laptop, Computer Repair &amp; Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f9ff;
+      --bg-alt: #eef4ff;
+      --primary: #005faf;
+      --dark: #00162c;
+      --text: #43474d;
+      --muted: #7d93af;
+      --pill: #dce9fd;
+      --light: #e4efff;
+      --accent: #5da2fd;
+      --navy: #142b43;
+      --white: #ffffff;
+      --shadow-card: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lift: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    p { line-height: 1.6; }
+
+    .section { padding: 64px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .center { text-align: center; }
+
+    .section-head {
+      max-width: 672px;
+      margin: 0 auto 64px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+    }
+    .section-head h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+    .section-head p {
+      font-size: 16px;
+      max-width: 620px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 16px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--pill);
+      color: var(--primary);
+    }
+    .pill.solid {
+      background: var(--primary);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      font-weight: 700;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 40px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      box-shadow: var(--shadow-card);
+      font-family: inherit;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-soft { background: var(--light); color: var(--dark); }
+    .btn-white { background: #fff; color: var(--dark); }
+    .btn-dark { background: var(--dark); color: #fff; }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      background-color: #cfd8e6;
+      background-image: linear-gradient(135deg, #dce9fd 0%, #9fb8d6 50%, #00162c 100%);
+      background-size: cover;
+      background-position: center;
+      border-radius: inherit;
+    }
+
+    /* ---------- 1. HERO ---------- */
+    .hero { padding: 64px 40px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .hero-left { display: flex; flex-direction: column; gap: 16px; }
+    .hero h1 {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -1.4px;
+      line-height: 64px;
+      margin-top: 4px;
+    }
+    .hero .subtitle {
+      font-size: 18px;
+      line-height: 28px;
+      max-width: 576px;
+    }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 16px; padding-top: 4px; }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+      padding-top: 16px;
+    }
+    .trust-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .check-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .check-icon::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: 3px;
+      width: 4px;
+      height: 7px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .hero-card {
+      position: relative;
+      height: 420px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow-lift);
+    }
+    .hero-card .img-placeholder { border-radius: 16px; }
+    .floating-badge {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+    }
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--pill);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+    .floating-badge strong { display: block; color: var(--dark); font-size: 14px; }
+    .floating-badge small { color: var(--text); font-size: 14px; }
+
+    /* ---------- 2. TRUST & ACHIEVEMENT ---------- */
+    .trust { background: var(--bg-alt); padding: 40px; }
+    .stats-grid {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .stat-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+    .stat-card .num {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 56px;
+      line-height: 64px;
+      color: var(--primary);
+    }
+    .stat-card .label { font-size: 14px; font-weight: 500; color: var(--text); }
+    .trust .section-head { margin-bottom: 0; }
+
+    /* ---------- 3. SERVICES ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .service-card {
+      background: #fff;
+      border: 2px solid var(--light);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+    }
+    .service-media {
+      position: relative;
+      height: 192px;
+      background: var(--dark);
+    }
+    .service-media .img-placeholder { border-radius: 0; }
+    .media-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,22,44,.9);
+      color: #fff;
+      border: 1px solid rgba(196,198,206,.3);
+      border-radius: 9999px;
+      padding: 5px 9px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .media-badge {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .service-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .service-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .service-body h3 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.5px;
+    }
+    .service-body p { font-size: 16px; line-height: 26px; }
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 8px;
+      font-size: 14px;
+    }
+    .service-list li { display: flex; gap: 8px; align-items: center; }
+    .service-list li::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      flex-shrink: 0;
+    }
+    .service-link {
+      margin: 0 24px 24px;
+      background: var(--bg-alt);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--dark);
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+    .service-link:hover { background: var(--light); }
+    .arrow { color: var(--primary); font-weight: 700; }
+    .services-cta { display: flex; justify-content: center; margin-top: 24px; }
+
+    /* ---------- 4. WHY CHOOSE US ---------- */
+    .why { background: var(--bg-alt); padding: 64px 40px; }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .why h2 { font-size: 40px; font-weight: 700; letter-spacing: -1px; line-height: 48px; }
+    .why .lead { font-size: 16px; line-height: 24px; margin: 16px 0 8px; }
+    .reasons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding-top: 8px;
+    }
+    .reason { display: flex; gap: 8px; align-items: flex-start; }
+    .reason h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .reason p { font-size: 14px; line-height: 20px; }
+    .why-media {
+      position: relative;
+      height: 480px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: var(--shadow-lift);
+    }
+    .why-media .img-placeholder { border-radius: 16px; }
+
+    /* ---------- 5. HOW IT WORKS ---------- */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .step {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      box-shadow: var(--shadow-card);
+    }
+    .step h3 { font-size: 20px; font-weight: 700; }
+    .step p { font-size: 14px; line-height: 20px; }
+
+    /* ---------- 6. BRANDS ---------- */
+    .brands { padding: 41px 40px; }
+    .brands-row {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+    .brand {
+      background: #fff;
+      border: 1px solid var(--light);
+      border-radius: 12px;
+      height: 80px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      font-weight: 700;
+      color: #9aa4b2;
+      font-size: 14px;
+      letter-spacing: .5px;
+    }
+
+    /* ---------- 7. BOOKING ---------- */
+    .booking { padding: 64px 40px; }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 64px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      align-items: start;
+    }
+    .booking h2 { font-size: 40px; font-weight: 700; letter-spacing: -1px; line-height: 48px; }
+    .booking .lead { font-size: 16px; line-height: 24px; margin: 16px 0; }
+    .reassure { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .reassure span { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--dark); font-size: 14px; }
+    .contact-cards { display: flex; flex-direction: column; gap: 12px; }
+    .contact-card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background .15s ease;
+    }
+    .contact-card:hover { background: #d3e5ff; }
+    .contact-card small { display: block; color: var(--text); font-size: 12px; font-weight: 500; }
+    .contact-card strong { display: block; color: var(--dark); font-size: 16px; }
+
+    .form-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: var(--shadow-lift);
+    }
+    .form-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+    form { display: flex; flex-direction: column; gap: 16px; }
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field { display: flex; flex-direction: column; gap: 4px; }
+    .field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      font: inherit;
+      font-size: 16px;
+      color: var(--dark);
+      background: #fff;
+      border: 1px solid #e3e8f0;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .field select {
+      background-image: linear-gradient(45deg, transparent 50%, #5b6b7d 50%), linear-gradient(135deg, #5b6b7d 50%, transparent 50%);
+      background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-right: 36px;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #9ca3af; }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,95,175,.15);
+    }
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+      line-height: 24px;
+    }
+    .optional-note { font-weight: 400; color: var(--muted); }
+    .submit-btn { width: 100%; height: 56px; padding: 0 24px; }
+    .form-note { text-align: center; font-size: 14px; color: var(--text); }
+    .form-status {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .form-status.show { display: block; }
+    .form-status.success { background: #e7f6ec; color: #13703b; }
+    .form-status.error { background: #fdecec; color: #a4262c; }
+
+    /* ---------- 8. TESTIMONIALS ---------- */
+    .testimonials { background: var(--bg-alt); padding: 64px 40px; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .testi {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    }
+    .stars { color: var(--primary); font-size: 16px; letter-spacing: 2px; }
+    .testi blockquote {
+      font-style: italic;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--text);
+    }
+    .author { display: flex; gap: 8px; align-items: center; }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 9999px;
+      background: var(--pill);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .author strong { display: block; font-size: 14px; color: var(--dark); }
+    .author small { display: block; font-size: 12px; color: var(--primary); font-weight: 500; }
+
+    /* ---------- 9. FAQ ---------- */
+    .faq { padding: 64px 240px; }
+    .faq-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .faq-wrap .section-head { margin-bottom: 40px; }
+    .faq-list { display: flex; flex-direction: column; gap: 8px; }
+    details {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      overflow: hidden;
+    }
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 16px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid var(--primary);
+      border-bottom: 2px solid var(--primary);
+      transform: rotate(45deg);
+      transition: transform .2s ease;
+      margin-right: 4px;
+      flex-shrink: 0;
+    }
+    details[open] summary::after { transform: rotate(-135deg); }
+    details p {
+      padding: 0 16px 16px;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    /* ---------- 10. FINAL CTA ---------- */
+    .final-cta { background: var(--navy); padding: 64px 40px; text-align: center; }
+    .final-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .final-inner .pill {
+      background: rgba(214,228,247,.2);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .final-inner h2 {
+      color: #fff;
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -1.4px;
+      line-height: 64px;
+    }
+    .final-inner .sub {
+      color: var(--accent);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 32px;
+    }
+    .final-inner p.desc {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 28px;
+      max-width: 576px;
+    }
+    .final-buttons { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding-top: 4px; }
+
+    /* ---------- 11. FOOTER ---------- */
+    .footer { background: var(--bg-alt); padding: 64px 40px 0; }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+    .brand-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--dark);
+    }
+    .footer-desc { margin: 16px 0; font-size: 16px; line-height: 24px; }
+    .socials { display: flex; gap: 8px; }
+    .social {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .footer h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .footer ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .footer ul li a { font-size: 16px; }
+    .footer ul li a:hover { color: var(--primary); }
+    .contact-line { font-size: 16px; margin-bottom: 8px; }
+    .contact-line strong { color: var(--dark); }
+    .copyright {
+      max-width: 1200px;
+      margin: 40px auto 0;
+      padding: 17px 24px;
+      border-top: 1px solid #d6e4f7;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 14px;
+    }
+    .copyright nav { display: flex; gap: 16px; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1100px) {
+      .hero h1 { font-size: 46px; line-height: 54px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .brands-row { grid-template-columns: repeat(3, 1fr); }
+      .faq { padding: 64px 40px; }
+    }
+
+    @media (max-width: 960px) {
+      .section, .hero, .trust, .why, .booking, .testimonials, .faq, .final-cta, .footer, .brands { padding-left: 20px; padding-right: 20px; }
+      .hero-grid, .why-grid, .booking-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card { height: 360px; }
+      .why-media { height: 360px; }
+      .section-head h2, .why h2, .booking h2 { font-size: 32px; line-height: 40px; letter-spacing: -.5px; }
+      .hero h1 { font-size: 40px; line-height: 48px; }
+      .final-inner h2 { font-size: 40px; line-height: 48px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid, .steps { grid-template-columns: 1fr; }
+      .brands-row { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .stat-card .num { font-size: 40px; line-height: 48px; }
+      .reasons { grid-template-columns: 1fr; }
+      .row-2 { grid-template-columns: 1fr; }
+      .form-card { padding: 24px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .btn { padding: 14px 24px; font-size: 15px; }
+      .hero h1 { font-size: 34px; line-height: 42px; }
+      .final-inner h2 { font-size: 32px; line-height: 40px; }
+      .final-inner .sub { font-size: 18px; line-height: 26px; }
+      .final-inner p.desc { font-size: 16px; }
+      .cta-row .btn { width: 100%; }
+      .trust-row { gap: 12px 20px; }
+      .floating-badge { left: 12px; right: 12px; bottom: 12px; padding: 12px; }
+      .copyright { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <span class="pill">Reliable Laptop &amp; Computer Support</span>
+        <h1>Your Computer Problems? We’ve Got Them Covered.</h1>
+        <p class="subtitle">From laptop repairs and software installation to hardware upgrades and complete PC maintenance, we make computer problems easier to solve. Get reliable service from people who know technology inside out.</p>
+        <div class="cta-row">
+          <a href="#booking" class="btn btn-primary">Book a Service <span>&rarr;</span></a>
+          <a href="#services" class="btn btn-soft">Explore Our Services</a>
+        </div>
+        <div class="trust-row">
+          <span><i class="check-icon"></i>Expert Technical Support</span>
+          <span><i class="check-icon"></i>Reliable Repair Solutions</span>
+          <span><i class="check-icon"></i>Friendly Customer Service</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <!-- Drop your photo at assets/hero-technician.jpg (or change the path below) -->
+        <div class="img-placeholder" style="background-image: url('assets/hero-technician.jpg');"></div>
+        <div class="floating-badge">
+          <div class="icon-box">&#9201;</div>
+          <div>
+            <strong>Same-Day Diagnostics Available</strong>
+            <small>Rapid check-in and priority dispatch</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TRUST & ACHIEVEMENT -->
+  <section class="trust">
+    <div class="section-head" style="margin-bottom:0">
+      <h2>Technology Support You Can Count On.</h2>
+      <p>A computer problem can interrupt your work, studies, or business. That’s why we focus on providing dependable repair and maintenance services that get your devices back on track.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="num">500+</div><div class="label">Devices Serviced</div></div>
+      <div class="stat-card"><div class="num">5+</div><div class="label">Years of Experience</div></div>
+      <div class="stat-card"><div class="num">450+</div><div class="label">Happy Customers</div></div>
+      <div class="stat-card"><div class="num">24/7</div><div class="label">Customer Support</div></div>
+    </div>
+  </section>
+
+  <!-- 3. OUR SERVICES -->
+  <section class="section" id="services">
+    <div class="section-head">
+      <span class="pill solid">Comprehensive Technical Solutions</span>
+      <h2>Everything Your Computer Needs. Built &amp; Fixed Right.</h2>
+      <p>From urgent component repairs to precision optimization, we provide enterprise-grade computer care engineered to last. No guesswork, no delays.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-media">
+          <div class="img-placeholder" style="background-image: url('assets/service-laptop-repair.jpg');"></div>
+          <span class="media-tag">Board-Level Lab</span>
+          <span class="media-badge">Same-Day Dispatch</span>
+        </div>
+        <div class="service-body">
+          <h3>Laptop &amp; Computer Repair</h3>
+          <p>Rapid diagnosis and board-level micro-soldering for power failure, damaged displays, thermal throttling, and complex hardware malfunction.</p>
+          <ul class="service-list">
+            <li>Micro-soldering &amp; BGA rework</li>
+            <li>Ultrasonic liquid damage cleaning</li>
+          </ul>
+        </div>
+        <a href="#booking" class="service-link">Schedule Repair <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-body">
+          <div class="service-top">
+            <div class="icon-box" style="background:var(--dark);color:#fff;width:56px;height:56px;border-radius:16px;">&#11123;</div>
+            <span class="pill" style="font-size:12px">Zero Data Loss</span>
+          </div>
+          <h3>Software &amp; OS Installation</h3>
+          <p>Certified clean installation for Windows, macOS, and Linux with full firmware, official drivers, automated telemetry tuning, and professional software suites.</p>
+          <ul class="service-list">
+            <li>Genuine licensing &amp; kernel optimization</li>
+            <li>Full forensic malware disinfection</li>
+          </ul>
+        </div>
+        <a href="#booking" class="service-link">Setup System <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <div class="img-placeholder" style="background-image: url('assets/service-hardware-upgrades.jpg');"></div>
+          <span class="media-tag">Peak Performance</span>
+          <span class="media-badge">Blazing NVMe</span>
+        </div>
+        <div class="service-body">
+          <h3>Hardware Upgrades</h3>
+          <p>Supercharge your device with Gen4/Gen5 NVMe SSD migrations, dual-channel high-speed RAM expansions, and compatible GPU/CPU thermal enhancements.</p>
+          <ul class="service-list">
+            <li>1:1 Sector SSD cloning with no downtime</li>
+            <li>High-frequency dual-channel memory tests</li>
+          </ul>
+        </div>
+        <a href="#booking" class="service-link">Upgrade Hardware <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-body">
+          <div class="service-top">
+            <div class="icon-box" style="background:var(--primary);color:#fff;width:56px;height:56px;border-radius:16px;">&#128295;</div>
+            <span class="pill" style="font-size:12px">Diagnostic Certified</span>
+          </div>
+          <h3>Laptop &amp; PC Maintenance</h3>
+          <p>Comprehensive preventative care including ultrasonic dust extraction, premium phase-change thermal compound repasting, and integrity stress testing.</p>
+          <ul class="service-list">
+            <li>High-grade thermal repaste (-15°C typical)</li>
+            <li>Full fan bearing ultrasonic restoration</li>
+          </ul>
+        </div>
+        <a href="#booking" class="service-link">Book Tune-Up <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <div class="img-placeholder" style="background-image: url('assets/service-networking.jpg');"></div>
+          <span class="media-tag">Enterprise Class</span>
+          <span class="media-badge">Ultra Low-Latency</span>
+        </div>
+        <div class="service-body">
+          <h3>Networking Solutions</h3>
+          <p>Robust office and home network architecture, mesh Wi-Fi optimization, low-latency VLAN configurations, and encrypted remote access setup.</p>
+          <ul class="service-list">
+            <li>Tri-band Wi-Fi 6E/7 coverage mapping</li>
+            <li>Failover routing &amp; secure firewall audit</li>
+          </ul>
+        </div>
+        <a href="#booking" class="service-link">Optimize Network <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-body">
+          <div class="service-top">
+            <div class="icon-box" style="background:var(--dark);color:#fff;width:56px;height:56px;border-radius:16px;">&#9881;</div>
+            <span class="pill" style="font-size:12px">Instant Turnaround</span>
+          </div>
+          <h3>Computer Setup &amp; Custom Work</h3>
+          <p>Custom PC assembly, enterprise peripheral syncing, secure disk sanitization, liquid cooling integration, and specialized technical engineering.</p>
+          <ul class="service-list">
+            <li>Bespoke airflow engineering &amp; cable routing</li>
+            <li>DoD 5220.22-M certified data sanitization</li>
+          </ul>
+        </div>
+        <a href="#booking" class="service-link">Request Service <span class="arrow">&rarr;</span></a>
+      </article>
+    </div>
+
+    <div class="services-cta">
+      <a href="#booking" class="btn btn-dark">&#9638; Explore All Computer Services &rarr;</a>
+    </div>
+  </section>
+
+  <!-- 4. WHY CHOOSE US -->
+  <section class="why">
+    <div class="why-grid">
+      <div>
+        <h2>Good Service Is More Than Just Fixing a Computer.</h2>
+        <p class="lead">We understand how important your laptop or computer is to your everyday life. That’s why we focus on more than just repairs. We care about the quality of our work, your time, and your overall experience.</p>
+        <div class="reasons">
+          <div class="reason">
+            <div class="icon-box">&#9733;</div>
+            <div><h4>Experienced Technicians</h4><p>Skilled professionals who understand computer hardware and software.</p></div>
+          </div>
+          <div class="reason">
+            <div class="icon-box">&#128269;</div>
+            <div><h4>Honest Diagnosis</h4><p>We identify the issue and explain what needs to be fixed before proceeding.</p></div>
+          </div>
+          <div class="reason">
+            <div class="icon-box">&#10003;</div>
+            <div><h4>Quality Solutions</h4><p>We focus on reliable repair methods and suitable replacement components.</p></div>
+          </div>
+          <div class="reason">
+            <div class="icon-box">&#128176;</div>
+            <div><h4>Affordable Service</h4><p>Practical solutions that consider your device and budget.</p></div>
+          </div>
+          <div class="reason">
+            <div class="icon-box">&#9786;</div>
+            <div><h4>Customer-First Approach</h4><p>Clear communication and friendly support throughout the process.</p></div>
+          </div>
+          <div class="reason">
+            <div class="icon-box">&#9881;</div>
+            <div><h4>Complete Technical Support</h4><p>Multiple computer services under one roof.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-media">
+        <div class="img-placeholder" style="background-image: url('assets/why-choose-us.jpg');"></div>
+        <div class="floating-badge">
+          <div class="icon-box">&#128065;</div>
+          <div>
+            <strong>100% Diagnostic Transparency</strong>
+            <small>Zero hidden fees or surprise charges</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. HOW IT WORKS -->
+  <section class="section" style="background:var(--bg)">
+    <div class="section-head">
+      <h2>Getting Your Device Fixed Is Simple.</h2>
+      <p>No complicated process. Just a few simple steps to get your laptop or computer the attention it needs.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Book Your Service</h3>
+        <p>Contact us through our website or phone and tell us what’s happening with your device.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Device Inspection</h3>
+        <p>Our technician checks your laptop or computer to understand the root issue.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Get the Right Solution</h3>
+        <p>We explain the problem, recommend the repair, and share the estimated cost.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Repair &amp; Delivery</h3>
+        <p>Once approved, we complete the service and return your device after thorough testing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SUPPORTED BRANDS -->
+  <section class="brands">
+    <div class="section-head" style="margin-bottom:40px">
+      <h2>Supported Brands</h2>
+      <p>We service laptops and computers from the most trusted manufacturers.</p>
+    </div>
+    <div class="brands-row">
+      <!-- Replace each label with the brand logo (SVG/PNG) from the Figma file when you export it -->
+      <div class="brand">BRAND 1</div>
+      <div class="brand">BRAND 2</div>
+      <div class="brand">BRAND 3</div>
+      <div class="brand">BRAND 4</div>
+      <div class="brand">BRAND 5</div>
+      <div class="brand">BRAND 6</div>
+    </div>
+  </section>
+
+  <!-- 7. BOOKING SECTION -->
+  <section class="booking" id="booking">
+    <div class="booking-grid">
+      <div>
+        <h2>Let’s Get Your Device Back in Shape.</h2>
+        <p class="lead">Tell us a little about your device and the problem you’re facing. Our team will get in touch to understand your requirements and help you find the right service.</p>
+
+        <div class="reassure">
+          <span><i class="check-icon"></i>Easy Booking Process</span>
+          <span><i class="check-icon"></i>Friendly Technical Support</span>
+          <span><i class="check-icon"></i>Clear Service Communication</span>
+        </div>
+
+        <div class="contact-cards">
+          <a class="contact-card" href="tel:+18005553499">
+            <div>
+              <small>Direct Telephone Support</small>
+              <strong>+1 (800) 555-3499</strong>
+            </div>
+            <span class="arrow">&rarr;</span>
+          </a>
+          <a class="contact-card" href="https://wa.me/18005553499" target="_blank" rel="noopener">
+            <div>
+              <small>Direct WhatsApp Hotline</small>
+              <strong>Chat With A Technician</strong>
+            </div>
+            <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>Book Your Service</h3>
+
+        <form id="bookingForm" novalidate>
+          <div class="row-2">
+            <div class="field">
+              <label for="f-name">Full Name *</label>
+              <input id="f-name" name="name" type="text" placeholder="John Doe" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone Number *</label>
+              <input id="f-phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-email">Email Address <span class="optional-note">(Optional)</span></label>
+            <input id="f-email" name="email" type="email" placeholder="john@example.com" autocomplete="email" />
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="f-deviceType">Device Type *</label>
+              <select id="f-deviceType" name="deviceType" required>
+                <option value="" disabled selected>Select device type</option>
+                <option>Laptop</option>
+                <option>Desktop PC</option>
+                <option>All-in-One PC</option>
+                <option>Gaming PC</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-deviceBrand">Device Brand *</label>
+              <select id="f-deviceBrand" name="deviceBrand" required>
+                <option value="" disabled selected>Select brand</option>
+                <option>Apple</option>
+                <option>Dell</option>
+                <option>HP</option>
+                <option>Lenovo</option>
+                <option>Asus</option>
+                <option>Acer</option>
+                <option>Microsoft</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-serviceRequired">Service Required *</label>
+            <select id="f-serviceRequired" name="serviceRequired" required>
+              <option value="" disabled selected>Select service</option>
+              <option>Laptop &amp; Computer Repair</option>
+              <option>Software &amp; OS Installation</option>
+              <option>Hardware Upgrades</option>
+              <option>Laptop &amp; PC Maintenance</option>
+              <option>Networking Solutions</option>
+              <option>Computer Setup &amp; Custom Work</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="f-issue">Describe Your Issue *</label>
+            <textarea id="f-issue" name="issue" placeholder="Please provide brief details on what happens (e.g. blue screen, won't turn on, overheating)..." required></textarea>
+          </div>
+
+          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+
+          <button id="submitBtn" type="submit" class="btn btn-primary submit-btn">Book My Service &#10148;</button>
+          <p class="form-note">Your details are only used to contact you about your service request.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CUSTOMER TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-head">
+      <h2>Don’t Just Take Our Word for It.</h2>
+      <p>The best part of our work is knowing we’ve helped someone get back to what matters. Here’s what our customers have to say about their experience.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi">
+        <div>
+          <div class="stars">★★★★★</div>
+          <blockquote style="margin-top:16px">“My laptop was running extremely slowly. They checked the issue, explained everything clearly, and helped improve its performance. Really happy with the service.”</blockquote>
+        </div>
+        <div class="author">
+          <div class="avatar">SJ</div>
+          <div><strong>Sarah Jenkins</strong><small>Laptop Repair</small></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div>
+          <div class="stars">★★★★★</div>
+          <blockquote style="margin-top:16px">“I needed an operating system installation and some software setup. The process was smooth, and the service was professional. Highly recommended!”</blockquote>
+        </div>
+        <div class="author">
+          <div class="avatar">DM</div>
+          <div><strong>David Miller</strong><small>Software Installation</small></div>
+        </div>
+      </div>
+      <div class="testi">
+        <div>
+          <div class="stars">★★★★★</div>
+          <blockquote style="margin-top:16px">“Great experience with their computer repair service. They understood the problem and suggested the right solution. Friendly and helpful team.”</blockquote>
+        </div>
+        <div class="author">
+          <div class="avatar">ER</div>
+          <div><strong>Elena Rostova</strong><small>Computer Repair</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FAQ -->
+  <section class="faq">
+    <div class="faq-wrap">
+      <div class="section-head">
+        <h2>Got Questions? We’ve Got Answers.</h2>
+        <p>Here are a few things customers often want to know before booking a service.</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>What types of computer problems do you fix?</summary>
+          <p>We handle laptop and desktop issues including power failures, damaged displays, overheating, slow performance, software errors, and board-level hardware faults.</p>
+        </details>
+        <details>
+          <summary>Do you provide both laptop and desktop repair services?</summary>
+          <p>Yes. We repair and maintain laptops, desktop PCs, and all-in-one computers.</p>
+        </details>
+        <details>
+          <summary>Can you install Windows and other operating systems?</summary>
+          <p>Yes. We install and configure Windows, macOS, and Linux, including drivers and essential software.</p>
+        </details>
+        <details>
+          <summary>Can I upgrade my laptop's RAM or SSD?</summary>
+          <p>In most cases, yes. Our technicians will confirm compatibility before any upgrade and migrate your data safely.</p>
+        </details>
+        <details>
+          <summary>How long does a computer repair take?</summary>
+          <p>Many common repairs and diagnostics are completed the same day. More complex board-level work will be quoted with an estimated timeline.</p>
+        </details>
+        <details>
+          <summary>Do you provide a warranty on repairs?</summary>
+          <p>Yes. Every completed repair comes with a warranty on the parts and labor we provide. Ask our team for the exact terms for your service.</p>
+        </details>
+        <details>
+          <summary>How can I book a service?</summary>
+          <p>Use the booking form on this page, call us at +1 (800) 555-3499, or message a technician on WhatsApp.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FINAL CTA -->
+  <section class="final-cta">
+    <div class="final-inner">
+      <span class="pill">Priority Diagnostics Open</span>
+      <h2>Your Device Deserves Better Care.</h2>
+      <div class="sub">Let’s Fix It, Upgrade It, and Keep It Running.</div>
+      <p class="desc">Don’t let a computer problem slow you down. Get in touch with our team and find the right solution for your device today.</p>
+      <div class="final-buttons">
+        <a href="#booking" class="btn btn-primary">Book a Service &rarr;</a>
+        <a href="tel:+18005553499" class="btn btn-white">&#9742; Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-line">&#128295; TechFix Pro</div>
+        <p class="footer-desc">Reliable computer care, practical repair solutions, and friendly technical support — all in one place.</p>
+        <div class="socials">
+          <a class="social" href="#" aria-label="Instagram">IG</a>
+          <a class="social" href="#" aria-label="Facebook">FB</a>
+          <a class="social" href="#" aria-label="LinkedIn">IN</a>
+          <a class="social" href="https://wa.me/18005553499" aria-label="WhatsApp">WA</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#booking">Book a Service</a></li>
+          <li><a href="#booking">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#services">Laptop &amp; PC Repair</a></li>
+          <li><a href="#services">Software &amp; OS Installation</a></li>
+          <li><a href="#services">Hardware Upgrades</a></li>
+          <li><a href="#services">Computer Maintenance</a></li>
+          <li><a href="#services">Networking Solutions</a></li>
+          <li><a href="#services">Technical Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact Information</h4>
+        <p class="contact-line"><strong><a href="tel:+18005553499">+1 (800) 555-3499</a></strong></p>
+        <p class="contact-line"><a href="mailto:support@techfixpro.com">support@techfixpro.com</a></p>
+        <p class="contact-line">742 Evergreen Tech Suite,<br />Silicon Park</p>
+        <p class="contact-line">Mon - Sat: 8:00 AM - 7:00 PM</p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <span>© 2026 TechFix Pro. All Rights Reserved.</span>
+      <nav>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Apps Script Web App URL (deployed Code.gs)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyu_zdluEYHcj136RdswPOtSh-lygDs6-z4o9mgzxtR2RlqaZWdYZLJOHVVwGSxqL2h/exec";
+
+    const form = document.getElementById("bookingForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const statusEl = document.getElementById("formStatus");
+
+    function setLoading(isLoading) {
+      submitBtn.disabled = isLoading;
+      submitBtn.textContent = isLoading ? "Sending..." : "Book My Service \u27A4";
+    }
+
+    function showStatus(type, message) {
+      statusEl.className = "form-status show " + type;
+      statusEl.textContent = message;
+    }
+
+    function showSuccess() {
+      setLoading(false);
+      showStatus("success", "Thank you! Your service request has been received. Our team will contact you shortly.");
+      form.reset();
+    }
+
+    function showError() {
+      setLoading(false);
+      showStatus("error", "Sorry, something went wrong. Please try again or call +1 (800) 555-3499.");
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Basic validation (required fields)
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const data = {
+        name: document.getElementById("f-name").value.trim(),
+        phone: document.getElementById("f-phone").value.trim(),
+        email: document.getElementById("f-email").value.trim(),
+        deviceType: document.getElementById("f-deviceType").value,
+        deviceBrand: document.getElementById("f-deviceBrand").value,
+        serviceRequired: document.getElementById("f-serviceRequired").value,
+        issue: document.getElementById("f-issue").value.trim()
+      };
+
+      const URL = SCRIPT_URL + "?" + new URLSearchParams(data);
+
+      statusEl.className = "form-status";
+      setLoading(true);
+
+      fetch(URL, { method: "GET", mode: "no-cors" })
+        .then(function () { showSuccess(); })
+        .catch(function () { showError(); });
+    });
+  </script>
+</body>
+</html>
